@@ -97,7 +97,7 @@ public class TeleOpTest1 extends OpMode {
         telemetry.addData("Servo", "Position (%.2f)", testServo.getPosition());
         */
 
-        contServo.setPower(-gamepad2.left_stick_y);
+        contServo.setPower(gamepad2.left_stick_y);
         telemetry.addData("ContServo", "Moving (%.2f)", contServo.getPower());
 
         /*

@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
-public class ShoulderNExtendCode extends OpMode {
+// @TeleOp
+class ShoulderNExtendCode extends OpMode {
 
     private DcMotor leftFrontDrive;
     private DcMotor rightFrontDrive;
