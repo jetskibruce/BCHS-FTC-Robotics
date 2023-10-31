@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
-      <module name="BCHS-FTC-2022.FtcRobotController" target="11" />
-      <module name="BCHS-FTC-2022.TeamCode" target="11" />
-      <module name="BCHS-FTC-Robotics.FtcRobotController" target="17" />
-      <module name="BCHS-FTC-Robotics.TeamCode" target="17" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>

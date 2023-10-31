@@ -20,19 +20,6 @@ public class TeleOpTest1 extends OpMode {
     double strafe;
     double drive;
 
-    private CRServo contServo   = null;
-
-    /*
-    private Servo   testServo   = null;
-    private DcMotor sweeper     = null;
-
-    double testServoPosition = 0;
-
-    static final double MAX1 = 1;
-    static final double MIN1 = 0;
-
-    private DcMotor sweeper = null;
-    */
 
     @Override
     public void init() {
@@ -51,13 +38,7 @@ public class TeleOpTest1 extends OpMode {
         leftRearDrive.setPower(0);
         rightRearDrive.setPower(0);
 
-        contServo = hardwareMap.get(CRServo.class, "cont_servo");
 
-        /*
-        testServo = hardwareMap.get(Servo.class, "test_servo");
-        sweeper = hardwareMap.get(DcMotor.class, "sweeper");
-        sweeper.setDirection(DcMotor.Direction.FORWARD);
-        */
     }
 
     @Override
@@ -67,9 +48,9 @@ public class TeleOpTest1 extends OpMode {
         double leftRearPower;
         double rightRearPower;
 
-        double turn     = gamepad1.right_stick_x;
-        double strafe   = gamepad1.left_stick_x;
-        double drive    = gamepad1.left_stick_y;
+        double turn     = -gamepad1.right_stick_x;
+        double strafe   = -gamepad1.left_stick_x;
+        double drive    = -gamepad1.left_stick_y;
 
         leftFrontPower = Range.clip(drive + turn + strafe, -1.0, 1.0);
         rightFrontPower = Range.clip((drive - turn) - strafe, -1.0, 1.0);
@@ -87,24 +68,6 @@ public class TeleOpTest1 extends OpMode {
                 leftRearDrive.getPower(),
                 rightRearDrive.getPower());
 
-        /*
-        if(testServoPosition < MAX1)
-            testServoPosition += gamepad2.right_trigger/4;
-        if(testServoPosition > MIN1)
-            testServoPosition -= gamepad2.left_trigger/4;
-
-        testServo.setPosition(testServoPosition);
-        telemetry.addData("Servo", "Position (%.2f)", testServo.getPosition());
-        */
-
-        contServo.setPower(gamepad2.left_stick_y);
-        telemetry.addData("ContServo", "Moving (%.2f)", contServo.getPower());
-
-        /*
-        double sweepPower = gamepad2.right_trigger - gamepad2.left_trigger;
-        sweeper.setPower(sweepPower);
-        telemetry.addData("Sweep", "Speed", sweeper.getPower());
-        */
     }
 
     @Override
