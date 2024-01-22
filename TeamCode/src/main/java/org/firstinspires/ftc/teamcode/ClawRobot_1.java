@@ -1,22 +1,24 @@
-package org.firstinspires.ftc.teamcode;
+/*
 
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.util.Range;
+        import com.qualcomm.robotcore.hardware.CRServo;
+        import com.qualcomm.robotcore.hardware.DcMotor;
+        import com.qualcomm.robotcore.hardware.Servo;
+        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+        import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
-@TeleOp(name="TeleOpTestHalloween", group="TeleOp")
-public class TeleOpTest1 extends OpMode {
+@TeleOp(name="ClawRobot_1", group="TeleOp")
+public class ClawRobot_1 extends OpMode {
+
 
     private DcMotor leftFrontDrive  = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor leftRearDrive   = null;
     private DcMotor rightRearDrive  = null;
-
+    private Servo grabber_left_servo = null;
+    private Servo grabber_right_servo = null;
     double strafe;
     double drive;
 
@@ -29,8 +31,8 @@ public class TeleOpTest1 extends OpMode {
         rightRearDrive  = hardwareMap.get(DcMotor.class, "right_rear_motor");
 
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftRearDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftRearDrive.setDirection(DcMotor.Direction.FORWARD);
         rightRearDrive.setDirection(DcMotor.Direction.REVERSE);
 
         leftFrontDrive.setPower(0);
@@ -38,6 +40,12 @@ public class TeleOpTest1 extends OpMode {
         leftRearDrive.setPower(0);
         rightRearDrive.setPower(0);
 
+        grabber_left_servo = hardwareMap.get(Servo.class, "grabber_left");
+        //grab = 0.0   release = 0.25
+        grabber_right_servo = hardwareMap.get(Servo.class, "grabber_right");
+        //grab = 0.8   release = 0.5
+        grabber_left_servo.setPosition(0.25);
+        grabber_right_servo.setPosition(0.5);
 
     }
 
@@ -70,7 +78,16 @@ public class TeleOpTest1 extends OpMode {
 
     }
 
+        if (gamepad1.a) {
+            grabber_left_servo.setPosition(0.0);
+    }
+
+        if (gamepad1.b) {
+            grabber_left_servo.setPosition(0.25);
+    }
+
     @Override
     public void stop() {
     }
 }
+*/

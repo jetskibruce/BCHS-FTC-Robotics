@@ -9,22 +9,19 @@ package org.firstinspires.ftc.teamcode;
         import com.qualcomm.robotcore.hardware.Gamepad;
         import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="ClawTest_1")
+@TeleOp(name="ClawTest_2")
 public class ClawTest_1 extends OpMode {
 
     private DcMotor front_left  = null;
     private DcMotor front_right = null;
     private DcMotor back_left   = null;
     private DcMotor back_right  = null;
-    private CRServo intake_servo = null;
-    private Servo intake_tilt_servo = null;
-    private Servo front_claw_servo = null;
-    private Servo back_claw_servo = null;
-    private Servo front_wrist_servo = null;
-    private Servo back_wrist_servo = null;
 
     private Servo grabber_left_servo = null;
     private Servo grabber_right_servo = null;
+    private Servo twist_wrist_servo = null;
+    private Servo angle_wrist_servo = null;
+    // Variables for controlling servo update rate
     // Variables for controlling servo update rate
     private int servoUpdateCounter = 0;
     private int servoUpdateInterval = 5;
@@ -78,10 +75,21 @@ public class ClawTest_1 extends OpMode {
         previousGamepad1 = new Gamepad();
 
         grabber_left_servo = hardwareMap.get(Servo.class, "grabber_left");
+        //grab = 0.0   release = 0.25
         grabber_right_servo = hardwareMap.get(Servo.class, "grabber_right");
+        //grab = 0.8   release = 0.5
+        twist_wrist_servo = hardwareMap.get(Servo.class, "twist_wrist");
+        //grab = 0.0   release = 0.25
+        angle_wrist_servo = hardwareMap.get(Servo.class, "angle_wrist");
+        //grab = 0.8   release = 0.5
 
+        twist_wrist_servo.setPosition(0.5);
+        // max
+        angle_wrist_servo.setPosition(0.74);
+        // max 1.0
+        // min 0.4
+        // mid .74
     }
-
 
     @Override
     public void loop() {
@@ -94,7 +102,7 @@ public class ClawTest_1 extends OpMode {
         double drive = gamepad1.left_stick_y;
         double strafe = -gamepad1.left_stick_x;
         double twist = -gamepad1.right_stick_x;
-        boolean intake_out = gamepad1.left_bumper;
+        boolean intake_out = gamepad1.left_bumper; 
         boolean intake_in = gamepad1.right_bumper;
         boolean right_trigger = gamepad1.right_trigger > .1;
         boolean left_trigger = gamepad1.left_trigger > .1;
@@ -105,8 +113,7 @@ public class ClawTest_1 extends OpMode {
 
             if (left_trigger) {
                 decrement_servo(test_servo);
-            }
-            else {
+            } else {
                 if (right_trigger) {
                     increment_servo(test_servo);
                 }
@@ -119,13 +126,30 @@ public class ClawTest_1 extends OpMode {
         }
 
         if (gamepad1.a) {
-            test_servo = grabber_left_servo;
+         //   test_servo = grabber_left_servo;
+            grabber_left_servo.setPosition(0.0);
+            grabber_right_servo.setPosition(0.75);
         }
 
         if (gamepad1.b) {
-            test_servo = grabber_right_servo;
+         //   test_servo = grabber_right_servo;
+            grabber_left_servo.setPosition(0.25);
+            grabber_right_servo.setPosition(0.5);
         }
-///*
+        if (gamepad1.x) {
+            test_servo = twist_wrist_servo;
+        }
+        if (gamepad1.y) {
+            test_servo = angle_wrist_servo;
+
+        }
+        telemetry.addData("Servos", "leftClaw (%.2f), rightClaw (%.2f), twist (%.2f), angle (%.2f), ",
+
+                grabber_left_servo.getPosition(),
+                grabber_right_servo.getPosition(),
+                twist_wrist_servo.getPosition(),
+                angle_wrist_servo.getPosition()
+        );
 //        if (gamepad1.x) {
 //            test_servo = front_wrist_servo;
 //        }
@@ -171,5 +195,7 @@ public class ClawTest_1 extends OpMode {
 //                intake_tilt_servo.setPosition(0.91);
 //            }
 //        }
+
+
     }
 }
