@@ -100,8 +100,8 @@ public class ClawTest_1 extends OpMode {
 //        telemetry.addData("back_wrist_servo:",front_claw_servo.getPosition());
 
         double drive = gamepad1.left_stick_y;
-        double strafe = -gamepad1.left_stick_x;
-        double twist = -gamepad1.right_stick_x;
+        double strafe = gamepad1.left_stick_x;
+        double twist = gamepad1.right_stick_x;
         boolean intake_out = gamepad1.left_bumper; 
         boolean intake_in = gamepad1.right_bumper;
         boolean right_trigger = gamepad1.right_trigger > .1;

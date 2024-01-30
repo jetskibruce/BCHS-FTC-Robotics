@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.Range;
 
 //@Disabled
-@TeleOp(name="TeleOpTestHalloween", group="TeleOp")
+@TeleOp(name="TeleOp_Main", group="TeleOp")
 public class TeleOpTest1 extends OpMode {
 
     private DcMotor leftFrontDrive  = null;
@@ -48,8 +48,8 @@ public class TeleOpTest1 extends OpMode {
         double leftRearPower;
         double rightRearPower;
 
-        double turn     = -gamepad1.right_stick_x;
-        double strafe   = -gamepad1.left_stick_x;
+        double turn     = gamepad1.right_stick_x;
+        double strafe   = gamepad1.left_stick_x;
         double drive    = -gamepad1.left_stick_y;
 
         leftFrontPower = Range.clip(drive + turn + strafe, -1.0, 1.0);
